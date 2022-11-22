@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -7,10 +8,14 @@ import { AuthService } from '../auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
   registrationForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private titleService: Title
+  ) {
     this.registrationForm = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -18,6 +23,10 @@ export class RegisterComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.titleService.setTitle('Register Page')
+  }
+  
   register() {
     this.authService
       .register(this.registrationForm.value)

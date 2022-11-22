@@ -1,4 +1,12 @@
 //Tailwind imports
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+input.auth-input {
+  @apply w-full p-3.5 text-lg border-none bg-slate-800 rounded-lg focus-visible:outline-none focus-visible:outline-blue-500;
+}
+
+button.auth-button {
+  @apply p-3.5 text-lg rounded-lg w-full bg-blue-500 hover:bg-blue-700 font-semibold disabled:bg-slate-500 disabled:text-gray-200;
+}

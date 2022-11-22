@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { LoginComponent } from './login/login.component';
         component: RegisterComponent,
       },
     ]),
+    ReactiveFormsModule,
   ],
   declarations: [RegisterComponent, LoginComponent],
 })

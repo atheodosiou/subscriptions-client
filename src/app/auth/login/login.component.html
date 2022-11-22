@@ -1,5 +1,24 @@
 <div class="h-screen background-image">
-  <div class="flex flex-row bg-slate-900 h-full text-gray-50 bg-gradient-to-r from-slate-900 to-transparent bg-opacity-80">
-    Login Page
+  <div
+    class="flex flex-row bg-slate-900 h-full text-gray-50 bg-gradient-to-r from-slate-900 to-transparent bg-opacity-80">
+    <div class="w-full sm:w-full md:w-full lg:w-1/2 flex flex-col p-16 items-center justify-center">
+      <div class="flex flex-col gap-10">
+        <div class="flex flex-col gap-3">
+          <div class="text-slate-500 text-xl font-extrabold uppercase">Welcome back</div>
+          <div class="text-white text-5xl font-extrabold">Log in to your account<span class="text-blue-500">.</span>
+          </div>
+          <div class="text-slate-500 text-lg font-bold">Don't have an account? <span
+              class="text-blue-500 hover:text-blue-700 hover:cursor-pointer" routerLink="/auth/register">Register</span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3" [formGroup]="loginForm">
+          <input type="email" placeholder="E-mail" required class="auth-input" formControlName="email">
+          <input type="password" placeholder="Password" required class="auth-input" formControlName="password">
+        </div>
+        <div>
+          <button type="button" (click)="login()" class="auth-button" [disabled]="loginForm.invalid">Log In</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

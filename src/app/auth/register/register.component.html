@@ -1,3 +1,25 @@
-<p>
-  register works!
-</p>
+<div class="h-screen background-image">
+  <div
+    class="flex flex-row bg-slate-900 h-full text-gray-50 bg-gradient-to-r from-slate-900 to-transparent bg-opacity-80">
+    <div class="w-full sm:w-full md:w-full lg:w-1/2 flex flex-col p-16 items-center justify-center">
+      <div class="flex flex-col gap-10">
+        <div class="flex flex-col gap-3">
+          <div class="text-slate-500 text-xl font-extrabold uppercase">Start for free</div>
+          <div class="text-white text-5xl font-extrabold">Create new account<span class="text-blue-500">.</span></div>
+          <div class="text-slate-500 text-lg font-bold">Already A Member? <span
+              class="text-blue-500 hover:text-blue-700 hover:cursor-pointer" routerLink="/auth/login">Log In</span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3" [formGroup]="registrationForm">
+          <input type="text" placeholder="Full Name" required class="auth-input" formControlName="fullName">
+          <input type="email" placeholder="E-mail" required class="auth-input" formControlName="email">
+          <input type="password" placeholder="Password" required class="auth-input" formControlName="password">
+        </div>
+        <div>
+          <button type="button" (click)="register()" class="auth-button" [disabled]="registrationForm.invalid">Create
+            account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

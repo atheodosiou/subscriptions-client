@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +11,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -23,8 +19,6 @@ export class LoginComponent {
   }
 
   login() {
-    this.authService.login(this.loginForm.value).subscribe((res) => {
-      this.router.navigate(['/home']);
-    });
+    this.authService.login(this.loginForm.value).pipe(take(1)).subscribe();
   }
 }

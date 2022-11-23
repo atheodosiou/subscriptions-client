@@ -5,12 +5,14 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './guards/auth.guard';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '', redirectTo: 'login' },
+      { path: '', pathMatch: 'full', redirectTo: 'login' },
       {
         path: 'login',
         component: LoginComponent,
@@ -21,8 +23,9 @@ import { AuthService } from './auth.service';
       },
     ]),
     ReactiveFormsModule,
+    SharedModule,
   ],
   declarations: [RegisterComponent, LoginComponent],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
 })
 export class AuthModule {}

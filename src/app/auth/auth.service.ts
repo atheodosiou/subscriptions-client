@@ -4,12 +4,21 @@ import { Observable, tap, catchError, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { User } from '../shared/models/user.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthService {
   private serverUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private jwtService: JwtHelperService
+  ) {}
+
+  get isLoggedIn(): boolean {
+    return !this.jwtService.isTokenExpired();
+  }
 
   login(body: {
     email: string;

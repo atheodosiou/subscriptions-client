@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { take } from 'rxjs';
 import { Title } from '@angular/platform-browser';
+import { AlertService } from 'src/app/shared';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private titleService: Title
+    private titleService: Title,
+    private alertService: AlertService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -25,6 +27,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Log In Page');
+    this.alertService
+      .success('Login','Wellcome back!')
+      .then((res) => {
+        console.log(res);
+      });
   }
 
   login() {

@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private titleService: Title,
-    private alertService: AlertService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -27,11 +26,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Log In Page');
-    this.alertService
-      .success('Login','Wellcome back!')
-      .then((res) => {
-        console.log(res);
-      });
   }
 
   login() {

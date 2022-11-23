@@ -12,4 +12,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('Home');
   }
+
+  goToProfile() {
+    console.log('User Profile');
+  }
+
+  logout() {
+    console.log('Log out');
+  }
 }

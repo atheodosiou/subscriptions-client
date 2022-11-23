@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { User } from '../shared/models/user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AlertService } from '../shared';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +14,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private jwtService: JwtHelperService
+    private jwtService: JwtHelperService,
+    private alertService: AlertService
   ) {}
 
   get isLoggedIn(): boolean {
@@ -30,6 +32,7 @@ export class AuthService {
         tap((res) => {
           this.setAccessToken(res.accessToken);
           this.router.navigate(['/home']);
+          this.alertService.success('Login', 'Wellcome back!', 3000);
         }),
         catchError((error) => {
           this.handleError(error);
@@ -46,6 +49,11 @@ export class AuthService {
     return this.http.post<User>(`${this.serverUrl}/auth/register`, body).pipe(
       tap(() => {
         this.router.navigate(['/auth/login']);
+        this.alertService.success(
+          'Register',
+          'Wellcome! Please login to continue.',
+          3000
+        );
       }),
       catchError((error) => {
         this.handleError(error);
@@ -59,6 +67,7 @@ export class AuthService {
   }
 
   private handleError(error: HttpErrorResponse): void {
+    this.alertService.error('Error', error?.message || 'Something went wrong!');
     console.error(error);
   }
 }

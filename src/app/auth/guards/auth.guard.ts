@@ -20,6 +20,7 @@ export class AuthGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
+      console.log("Guard:",this.authService.isLoggedIn)
     if (this.authService.isLoggedIn) {
       return true;
     } else {

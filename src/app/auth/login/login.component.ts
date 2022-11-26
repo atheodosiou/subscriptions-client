@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private titleService: Title,
+    private titleService: Title
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -28,7 +28,10 @@ export class LoginComponent implements OnInit {
     this.titleService.setTitle('Log In Page');
   }
 
-  login() {
+  login(event?: KeyboardEvent) {
+    if ((event && event?.key !== 'Enter') || this.loginForm.invalid) {
+      return;
+    }
     this.authService.login(this.loginForm.value).pipe(take(1)).subscribe();
   }
 }

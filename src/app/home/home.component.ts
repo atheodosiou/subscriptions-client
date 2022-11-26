@@ -7,7 +7,8 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private titleService: Title) {}
+  constructor(private titleService: Title) // private authService: AuthService
+  {}
 
   ngOnInit() {
     this.titleService.setTitle('Home');
@@ -18,6 +19,6 @@ export class HomeComponent implements OnInit {
   }
 
   logout() {
-    console.log('Log out');
+    // this.authService.logout();
   }
 }

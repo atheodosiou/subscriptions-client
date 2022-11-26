@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
   registrationForm: FormGroup;
 
   constructor(
@@ -24,10 +24,13 @@ export class RegisterComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Register Page')
+    this.titleService.setTitle('Register Page');
   }
-  
-  register() {
+
+  register(event?: KeyboardEvent) {
+    if ((event && event?.key !== 'Enter') || this.registrationForm.invalid) {
+      return;
+    }
     this.authService
       .register(this.registrationForm.value)
       .subscribe((res) => console.log(res));

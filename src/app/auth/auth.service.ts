@@ -31,7 +31,7 @@ export class AuthService {
       .pipe(
         tap((res) => {
           this.setAccessToken(res.accessToken);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
           this.alertService.success('Login', 'Wellcome back!', 3000);
         }),
         catchError((error) => {
@@ -60,6 +60,11 @@ export class AuthService {
         return of(error);
       })
     );
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/auth/login']);
   }
 
   private setAccessToken(token: string): void {

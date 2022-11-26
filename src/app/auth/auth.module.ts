@@ -1,31 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { AuthGuard } from './guards/auth.guard';
 import { SharedModule } from '../shared/shared.module';
+import { AuthRoutingModule } from './auth-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      { path: '', pathMatch: 'full', redirectTo: 'login' },
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
-      {
-        path: 'register',
-        component: RegisterComponent,
-      },
-    ]),
-    ReactiveFormsModule,
-    SharedModule,
-  ],
-  declarations: [RegisterComponent, LoginComponent],
-  providers: [AuthService, AuthGuard],
+  declarations: [LoginComponent, RegisterComponent],
+  imports: [CommonModule, AuthRoutingModule, SharedModule, ReactiveFormsModule],
+  providers: [AuthService],
+  exports: [AuthRoutingModule],
 })
 export class AuthModule {}

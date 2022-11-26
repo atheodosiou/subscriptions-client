@@ -12,8 +12,10 @@
           </div>
         </div>
         <div class="flex flex-col gap-3" [formGroup]="loginForm">
-          <input type="email" placeholder="E-mail" required class="auth-input" formControlName="email">
-          <input type="password" placeholder="Password" required class="auth-input" formControlName="password">
+          <input type="email" placeholder="E-mail" required class="auth-input" formControlName="email"
+            (keyup)="login($event)">
+          <input type="password" placeholder="Password" required class="auth-input" formControlName="password"
+            (keyup)="login($event)">
         </div>
         <div>
           <button type="button" (click)="login()" class="auth-button" [disabled]="loginForm.invalid">Log In</button>

@@ -1,16 +1,19 @@
-<div class="sidebar" [ngClass]="collapsed?'sidebar-collapsed':''">
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
   <div class="logo-container">
     <button class="logo" (click)="toggleCollapse()">A</button>
-    <div class="logo-text" *ngIf="collapsed">Logo Text</div>
-    <button class="btn-close" *ngIf="collapsed" (click)="closeSidebar()">
-      <i class="fas fa-times"></i>
+    <div class="logo-text" @fadeInOut *ngIf="collapsed">Angular</div>
+    <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
+      <i class="fa fa-times close-icon"></i>
     </button>
   </div>
-  <ul class="sidebar-nav">
-    <li class="sidebar-nav-item" *ngFor="let link of sidebarData.links">
-      <a class="sidebar-nav-link" [routerLink]="link.routerLink">
-        <i class="sidebar-link-icon" *ngIf="link.icon" [ngClass]="link.icon"></i>
-        <span class="sidebar-link-text" *ngIf="collapsed">{{link?.label}}</span>
+  <ul class="sidenav-nav">
+    <li class="sidenav-nav-item" *ngFor="let link of navData.links">
+      <a class="sidenav-nav-link" [routerLink]="[link.routerLink]" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <i class="sidenav-link-icon" [class]="link.icon"></i>
+        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+          {{link.label}}
+        </span>
       </a>
     </li>
   </ul>

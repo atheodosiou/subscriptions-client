@@ -1,34 +1,82 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  HostListener,
+} from '@angular/core';
+import {
+  animate,
+  keyframes,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { SIDEBAR_DATA } from './sidebar.data';
-import { SidebarToggle } from './sidebar.model';
+import { SideNavToggle } from './sidebar.model';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('350ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate('350ms', style({ opacity: 0 })),
+      ]),
+    ]),
+    trigger('rotate', [
+      transition(':enter', [
+        animate(
+          '1000ms',
+          keyframes([
+            style({ transform: 'rotate(0deg)', offset: '0' }),
+            style({ transform: 'rotate(2turn)', offset: '1' }),
+          ])
+        ),
+      ]),
+    ]),
+  ],
 })
 export class SidebarComponent implements OnInit {
-  sidebarData = SIDEBAR_DATA;
+  @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed = false;
   screenWidth = 0;
-  @Output() toggle: EventEmitter<SidebarToggle> =
-    new EventEmitter<SidebarToggle>();
+  navData = SIDEBAR_DATA;
 
-  constructor() {}
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    console.log('Resize');
+    this.screenWidth = window.innerWidth;
+    if (this.screenWidth <= 768) {
+      this.collapsed = false;
+      this.onToggleSideNav.emit({
+        collapsed: this.collapsed,
+        screenWidth: this.screenWidth,
+      });
+    }
+  }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
+  }
 
-  toggleCollapse() {
+  toggleCollapse(): void {
     this.collapsed = !this.collapsed;
-    this.toggle.emit({
+    this.onToggleSideNav.emit({
       collapsed: this.collapsed,
       screenWidth: this.screenWidth,
     });
   }
 
-  closeSidebar() {
+  closeSidenav(): void {
     this.collapsed = false;
-    this.toggle.emit({
+    this.onToggleSideNav.emit({
       collapsed: this.collapsed,
       screenWidth: this.screenWidth,
     });

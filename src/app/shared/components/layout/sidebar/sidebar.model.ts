@@ -8,7 +8,7 @@ export interface SidebarData {
   links: SidebarLink[];
 }
 
-export interface SidebarToggle {
+export interface SideNavToggle {
   screenWidth: number;
   collapsed: boolean;
 }

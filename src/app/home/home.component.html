@@ -1,4 +1,5 @@
-<app-toolbar title="Subscriptions" (logoutClicked)="logout()" (profileClicked)="goToProfile()"></app-toolbar>
-<app-sidebar></app-sidebar>
-<!-- https://www.youtube.com/watch?v=8_Pm-aeQozA -->
-<p>Home Page</p>
+<app-sidebar (onToggleSideNav)="onToggleSideNav($event)"></app-sidebar>
+<app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth">
+    <app-toolbar title="Subscriptions" (logoutClicked)="logout()" (profileClicked)="goToProfile()"></app-toolbar>
+    <router-outlet></router-outlet>
+</app-body>

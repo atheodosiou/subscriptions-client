@@ -1,9 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SidebarComponent, ToolbarComponent } from './components';
+import {
+  BodyComponent,
+  SidebarComponent,
+  ToolbarComponent,
+} from './components';
 
-const components = [ToolbarComponent, SidebarComponent];
+const components = [ToolbarComponent, SidebarComponent, BodyComponent];
 
 @NgModule({
   imports: [CommonModule, RouterModule],

@@ -19,6 +19,6 @@ import { AuthGuard } from '../auth/guards/auth.guard';
     ]),
   ],
   exports: [RouterModule],
-  providers:[AuthGuard]
+  providers: [AuthGuard],
 })
 export class HomeRoutingModule {}

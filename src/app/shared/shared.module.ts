@@ -5,6 +5,7 @@ import {
   BodyComponent,
   RoundedIconButtonComponent,
   SidebarComponent,
+  ToggleComponent,
   ToolbarComponent,
 } from './components';
 
@@ -13,6 +14,7 @@ const components = [
   SidebarComponent,
   BodyComponent,
   RoundedIconButtonComponent,
+  ToggleComponent,
 ];
 
 @NgModule({

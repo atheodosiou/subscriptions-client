@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '../auth/guards/auth.guard';
+import { SubscriptionsComponent } from './subpages';
 
 @NgModule({
   imports: [
@@ -9,16 +10,27 @@ import { AuthGuard } from '../auth/guards/auth.guard';
       {
         path: '',
         component: HomeComponent,
-        // canActivate:[AuthGuard]
+        children: [
+          {
+            path: '',
+            redirectTo: '/subscriptions',
+            pathMatch: 'full',
+          },
+          {
+            path: 'subscriptions',
+            component: SubscriptionsComponent,
+          },
+        ],
       },
       {
         path: '**',
-        redirectTo: '/home',
+        redirectTo: '/',
         pathMatch: 'full',
       },
     ]),
   ],
   exports: [RouterModule],
   providers: [AuthGuard],
+  declarations: [SubscriptionsComponent],
 })
 export class HomeRoutingModule {}

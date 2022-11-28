@@ -1,0 +1,6 @@
+$toolbarHeight: 67px;
+
+.wrapper {
+  @apply p-3 overflow-y-auto;
+  height: calc(100vh - $toolbarHeight);
+}

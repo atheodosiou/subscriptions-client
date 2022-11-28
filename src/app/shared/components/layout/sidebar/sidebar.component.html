@@ -1,4 +1,4 @@
-<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+<div class="sidenav bg-gray-900" [ngClass]="collapsed ? 'sidenav-collapsed shadow-lg shadow-white dark:shadow-slate-700': ''">
   <div class="logo-container">
     <button class="logo" (click)="toggleCollapse()">A</button>
     <div class="logo-text" @fadeInOut *ngIf="collapsed">Angular</div>

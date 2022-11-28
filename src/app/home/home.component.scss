@@ -1,4 +1,4 @@
-$toolbarHeight: 67px;
+@import "../shared/styles/variables.scss";
 
 .wrapper {
   @apply p-3 overflow-y-auto;

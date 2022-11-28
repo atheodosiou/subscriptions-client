@@ -17,23 +17,13 @@ export const SIDEBAR_ANIMATIONS = [
 export const SIDEBAR_DATA: SidebarData = {
   links: [
     {
-      label: 'Home',
-      routerLink: '/home',
-      icon: 'fa-solid fa-house-user',
+      label: 'Subscriptions',
+      routerLink: '/subscriptions',
+      icon: 'fa-solid fa-credit-card',
     },
     {
       label: 'Home',
       routerLink: '/home2',
-      icon: 'fa-solid fa-house-user',
-    },
-    {
-      label: 'Home',
-      routerLink: '/home3',
-      icon: 'fa-solid fa-house-user',
-    },
-    {
-      label: 'Home',
-      routerLink: '/home4',
       icon: 'fa-solid fa-house-user',
     },
   ],
